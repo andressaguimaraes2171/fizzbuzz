@@ -2,7 +2,6 @@
 
 namespace App\Tests\Controller;
 
-use http\Exception\InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class IndexControllerTest extends WebTestCase
@@ -10,7 +9,7 @@ class IndexControllerTest extends WebTestCase
     public function testIndexPagination20items()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/index');
+        $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'FizzBuzz Generator');
@@ -31,7 +30,7 @@ class IndexControllerTest extends WebTestCase
     public function testFizzBuzzResultsFor3and5FirstPage()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/index');
+        $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'FizzBuzz Generator');
@@ -63,7 +62,7 @@ class IndexControllerTest extends WebTestCase
     public function testClickingPaginationLink()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/index');
+        $crawler = $client->request('GET', '/');
 
         $form = $crawler->selectButton('Generate')->form();
         $form['fizz_buzz[from]'] = 1;
@@ -83,7 +82,7 @@ class IndexControllerTest extends WebTestCase
     public function testUnexistingPage10()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/index');
+        $crawler = $client->request('GET', '/');
 
         $form = $crawler->selectButton('Generate')->form();
         $form['fizz_buzz[from]'] = 1;

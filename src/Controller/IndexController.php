@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class IndexController extends AbstractController
 {
-    #[Route('/index', name: 'app_index')]
+    #[Route('/', name: 'app_index')]
     public function index(Request $request, FizzBuzzService $fizzBuzzService, ArrayPaginatorService $paginatorService): Response
     {
 
