@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,16 +16,19 @@ class FizzBuzzType extends AbstractType
         $builder
             ->add('from',IntegerType::class)
             ->add('to', IntegerType::class)
-            ->add('fizz', IntegerType::class)
-            ->add('buzz', IntegerType::class)
-            ->add('search', SubmitType::class)
+            ->add('fizzNumber', IntegerType::class)
+            ->add('buzzNumber', IntegerType::class)
+            ->add('page', HiddenType::class)
+        ;
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'empty_data' => [
+                'page' => 1
+            ]
         ]);
     }
 }
